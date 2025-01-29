@@ -1,0 +1,74 @@
+syntax = "proto3";
+
+package translator;
+            message GetClaimedAddressRequest {
+                string appID = 1;
+                string sequenceNo = 2;
+                
+            };
+
+            message GetClaimedAddressResponse {
+                string appID = 1;
+				string sequenceNo = 2;
+                string claimedAddress = 3;
+                string responseCode = 4;
+            };
+        
+            message UDSCANFormat {
+                string canPhysReqFormat = 1;
+                string canRespUSDTFormat = 2;
+            };
+
+            message UDSOpenCommChannelRequest {
+                string appID = 1;
+                string sequenceNo = 2;
+                string toolAddress = 3;
+                string ecuAddress = 4;
+                repeated UDSCANFormat canFormat = 5;
+                string resourceName = 6;
+            };   
+        
+            message UDSOpenCommChannelResponse {
+                string appID = 1;
+                string connectionID = 2;
+                string sequenceNo = 3;
+                string responseCode = 4;
+            };
+        
+            message UDSCloseCommChannelRequest{
+                string appID = 1;
+                string connectionID = 2;
+                string sequenceNo = 3;
+            };
+
+            message UDSCloseCommChannelResponse {
+                string appID = 1;
+                string connectionID = 2;
+                string sequenceNo = 3;
+                string responseCode = 4;
+            };
+
+            message ReadDataByIdentifierRequest{
+                string appID = 1;
+                string connectionID = 2;
+                string sequenceNo = 3;
+                repeated string did = 4;
+            };
+
+
+            message ReadResponse{
+                string did = 1;
+                string value = 2;
+                string responseCode = 3;
+            };
+
+            message ReadDataByIdentifierResponse{
+               string appID = 1;
+               string connectionID = 2;
+               string sequenceNo = 3;
+               repeated ReadResponse data = 4;
+               string responseCode = 5;
+            };
+
+           
+        

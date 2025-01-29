@@ -1,0 +1,34 @@
+# Copyright (c) 9-7-2024 Cummins Inc
+# 
+# This program and the accompanying materials are made
+# available under the terms of the Eclipse Public License 2.0
+# which is available at https://www.eclipse.org/legal/epl-2.0/
+# 
+# SPDX-License-Identifier: EPL-2.0
+version: "3.6"
+services:
+  mosquitto_simulator:
+    image: eclipse-mosquitto:1.6.13
+    ports:
+      - 1884:1883
+    networks:
+      - edge-client
+    container_name: mosquitto_simulator
+
+  up-cpp-server:
+    depends_on:
+      - mosquitto_simulator
+    build: 
+      context: ./.devcontainer
+      dockerfile: Dockerfile
+    tty: true
+    networks:
+      - edge-client
+    volumes:
+      - ./:/root
+      - ./protofile:/protofile
+    container_name: up-cpp-server
+
+networks:
+  edge-client:
+    external: true
