@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package proto_test.example;
+
+message CanMessage {
+  enum CanMessageType {
+    UNKNOWN = 0;
+    GETCLAIMEDADDRESSREQUEST = 1;
+    GETCLAIMEDADDRESSRESPONSE = 2;
+    // UDSCANFORMAT = 3;
+    UDSOPENCOMMCHANNELREQUEST = 4;
+    UDSOPENCOMMCHANNELRESPONSE = 5;
+    UDSCLOSECOMMCHANNELREQUEST = 6;
+    UDSCLOSECOMMCHANNELRESPONSE = 7;
+    READDATABYIDENTIFIERREQUEST = 8;
+    // READRESPONSE = 9;
+    READDATABYIDENTIFIERRESPONSE = 10;
+  }
+
+  CanMessageType type = 1;
+  bytes message_payload = 2;
+}
